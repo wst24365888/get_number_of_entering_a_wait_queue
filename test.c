@@ -37,11 +37,25 @@ int main()
     for (i = 0; i < NUMBER_OF_IO_ITERATIONS; i++)
     {
         v = 1;
+        c = getchar();
+    }
+
+    for (i = 0; i < NUMBER_OF_ITERATIONS; i++)
+        v = (++t) * (u++);
+
+    for (i = 0; i < NUMBER_OF_IO_ITERATIONS; i++)
+    {
+        v = 1;
         printf("I love my home.\n");
     }
 
-    if (syscall(__NR_get_number_of_entering_a_wait_queue, pid, &w) != 0)
+    if (syscall(__NR_get_number_of_context_switches, pid, &w) != 0)
         printf("Error (3)!\n");
+    else
+        printf("This process encounters %u times context switches.\n", w);
+
+    if (syscall(__NR_get_number_of_entering_a_wait_queue, pid,&w) != 0)
+        printf("Error (4)!\n");
     else
         printf("This process enters a wait queue %u times.\n", w);
 }
